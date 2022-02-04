@@ -29,12 +29,19 @@ return{
 
 }
 const Home = ({ videos}) => {
+  
+  const ramdomVideo = (videos) =>{
+    return videos[Math.floor(Math.random()*videos.length)]
+  }
 
+  
   return (
     <>
-      <div></div> 
+      
       <div>  
-         {videos[1].title}
+          {ramdomVideo(videos).title}
+        
+
       </div>
     </>
   )
