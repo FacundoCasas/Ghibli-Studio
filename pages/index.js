@@ -8,24 +8,24 @@ export const getStaticProps = async() => {
     }
   })
 
-const videosQuery = gql`
-  query {
-    videos{
-      createdAt,
-      id,
-      title
+  const videosQuery = gql`
+    query {
+      videos{
+        createdAt,
+        id,
+        title
+      }
+    } 
+    `
+
+  const data = await graphQLClient.request(videosQuery)
+  const videos = data.videos
+
+  return{
+    props: {
+      videos
     }
-  } 
-  `
-
-const data = await graphQLClient.request(videosQuery)
-const videos = data.videos
-
-return{
-  props: {
-    videos
   }
-}
 
 }
 const Home = ({ videos}) => {
