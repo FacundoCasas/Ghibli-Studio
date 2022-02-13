@@ -1,14 +1,14 @@
 import { gql, GraphQLClient } from 'graphql-request';
 
-export const getStaticProps = async() => {
+export const getStaticProps = async () => {
   const url = process.env.ENDPOINT
-  const graphQLClient = new GraphQLClient(url,{
-    headers:{
-      "Authorization" : process.env.GRAPH_CMS_TOKEN
+  const graphQLClient = new GraphQLClient(url, {
+    headers: {
+      "Authorization": process.env.GRAPH_CMS_TOKEN
     }
   })
 
-const videosQuery = gql`
+  const videosQuery = gql`
 query{
   videos{
     id,
@@ -20,23 +20,29 @@ query{
 }
   `
 
-const data = await graphQLClient.request(videosQuery)
-const videos = data.videos
+  const data = await graphQLClient.request(videosQuery)
+  const videos = data.videos
 
-return{
-  props: {
-    videos
+  return {
+    props: {
+      videos
+    }
   }
 }
+const Home = ({ videos }) => {
 
-}
-const Home = ({ videos}) => {
+  const ramdomVideo = (videos) => {
+    return videos[Math.floor(Math.random() * videos.length)]
+  }
+
 
   return (
     <>
-      <div></div> 
-      <div>  
-         {videos[1].title}
+
+      <div>
+        {ramdomVideo(videos).title}
+
+
       </div>
     </>
   )

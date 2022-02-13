@@ -9,13 +9,10 @@ export const getServerSideProps = async (pageContext) => {
       })
     const pageSlug = pageContext.query.slug
 
-console.log("pageSlug",pageSlug)
-
 const query = gql`
 query($pageSlug : String!){
-    video(where:{
-      slug: $pageSlug
-    }){
+    video(where:{ slug: $pageSlug })
+    {
       id,
       title,
       slug,
@@ -30,7 +27,6 @@ query($pageSlug : String!){
   }
 
   const data = await graphQLClient.request(query,variables)
-  console.log("data",data)
   const video = data.video
 
   return{
@@ -43,7 +39,7 @@ query($pageSlug : String!){
 const Video = ({video}) => {
     console.log("video",video)
     return(
-        <div></div>
+        <div>{video.title}</div>
     )
 }
 
