@@ -18,7 +18,9 @@ query($pageSlug : String!){
     }){
       id,
       title,
-      slug
+      slug,
+      description,
+      tags
     }
   }
   `
