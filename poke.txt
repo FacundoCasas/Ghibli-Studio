@@ -1,0 +1,4 @@
+mvn install:install-file -Dfile=ojdbc14.jar -DgroupId=ojdbc 
+-DartifactId=ojdbc -Dversion=14 -Dpackaging=jar -DgeneratedPom=true
+
+mvn install:install-file -Dfile=C:\Users\Facundo\Desktop\pokekotlin-2.4.0.jar -DgroupId=me.sargunvohra.lib -DartifactId=pokekotlin -Dversion=2.4.0 -Dpackaging=jar -DgeneratedPom=true

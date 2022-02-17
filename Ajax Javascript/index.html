@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+    <script></script>
+</head>
+<body>
+    <button onclick=ArrayToJson()>ArrayToJson</button>
+    <button onclick=showCountries()>Show Countries</button>
+    <div id="feed"></div> 
+
+    <script src="./arrayToJson.ts"></script>
+    <script>
+        function showCountries(){
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET', 'https://restcountries.eu/rest/v2/all', true)
+
+            xhr.onload = function() {
+                if(xhr.status == 200){
+                    console.log('success')
+                    let contries = JSON.parse(this.response)
+                    console.log(contries)
+                    contries.forEach(country => {
+                        const countryCard = document.createElement('div')
+                        const countryCardImage = document.createElement('img')
+                        countryCard.innerHTML = country.name
+                        countryCardImage.src = country.flag
+                        countryCard.appendChild(countryCardImage)
+                        document.getElementById('feed').appendChild(countryCard)
+                    });
+                }
+            }
+
+            xhr.send()
+        }
+    </script>
+</body>
+</html>
